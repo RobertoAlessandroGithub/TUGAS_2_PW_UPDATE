@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     use HasFactory, HasUuids;
-
+    protected $table ='mahasiswa';
     public function prodi() {
         return $this->belongsTo(Prodi::class, 'prodi_id');
     }
