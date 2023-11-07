@@ -2,16 +2,25 @@
 @section('title', 'Mahasiswa')
 
 @section('content')
-    <h1>Halaman Prodi</h1>
-     <table class="table table-dark table-striped">
-        <tr>
 
+     </table>
+     <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Program Studi</h4>
+                  <p class="card-description">
+                    Daftar Prodi di MDP
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-dark">
+                      <thead>
+                          <tr>
             <th>Nama Prodi</th>
             <th>Nama Fakultas</th>
-
         </tr>
-
-    @foreach ($prodi as $item)
+                      </thead>
+                      <tbody>
+  @foreach ($prodi as $item)
     <tr>
         <td>{{$item['nama']}}</td>
         <td>{{$item['fakultas']['nama']}}</td>
@@ -19,5 +28,10 @@
 
 
         @endforeach
-     </table>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
 @endsection

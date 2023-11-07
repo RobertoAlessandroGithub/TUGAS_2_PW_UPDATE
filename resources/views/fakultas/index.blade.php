@@ -2,20 +2,35 @@
 @section('title', 'Mahasiswa')
 
 @section('content')
-    <h1>Halaman fakultas</h1>
-     <table class="table table-dark table-striped">
-        <tr>
-
-            <th>Nama Fakultas</th>
-
-        </tr>
-
-    @foreach ($fakultas as $item)
-    <tr>
-        <td>{{$item ['nama'] }}</td>
-    </tr>
 
 
-        @endforeach
      </table>
+     <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Fakultas</h4>
+                  <p class="card-description">
+                   Daftar Fakultas di Universitas MDP
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-dark">
+                      <thead>
+                              <tr>
+                              <th>Nama Fakultas</th>
+                             </tr>
+                      </thead>
+                      <tbody>
+                               @foreach ($fakultas as $item)
+                                <tr>
+                                    <td>{{$item ['nama'] }}</td>
+                                </tr>
+                                @endforeach
+                      </tbody>
+                    </table>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 @endsection
