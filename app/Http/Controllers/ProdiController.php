@@ -20,8 +20,8 @@ class ProdiController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {   
+        return view("prodi.create");
     }
 
     /**
@@ -29,7 +29,12 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validasi = $request->validate([
+            "nama" => "required|unique:prodi"
+        ]);
+
+        //simpan data ke tabel fakultas
+        Prodi::create($validasi);
     }
 
     /**
