@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class ProdiController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
-        return view("prodi.create");
+    {
+        $fakultas = Fakultas::all();
+        return view("prodi.create")->with('fakultas',  $fakultas);
     }
 
     /**
@@ -29,12 +31,13 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        $validasi = $request->validate([
-            "nama" => "required|unique:prodi"
-        ]);
+      $validasi = $request->validate([
+        "nama" => "required|unique:prodis",
+        "fakultas_id" => "required"
+      ]);
 
-        //simpan data ke tabel fakultas
-        Prodi::create($validasi);
+      Prodi::create($validasi);
+      return redirect("prodi")->with("success", "Data Prodi berhasil  disimpan");
     }
 
     /**

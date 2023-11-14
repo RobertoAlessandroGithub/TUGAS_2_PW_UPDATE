@@ -12,6 +12,7 @@
                   <p class="card-description">
                     Daftar Mahasiswa di MDP
                   </p>
+                  <a href="{{ route ('mahasiswa.create')}}"class="btn btn-primary btn-rounded btn-fw">Tambah</a>
                   <div class="table-responsive">
                     <table class="table table-dark">
                       <thead>
