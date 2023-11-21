@@ -53,9 +53,11 @@ class FakultasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $fakultas = Fakultas::find($id);
+
+        return view('fakultas.edit')->with('fakultas', $fakultas);
     }
 
     /**
@@ -63,14 +65,24 @@ class FakultasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validasi = $request -> validate([
+            "nama" =>
+            "required"
+        ]);
+        Fakultas::find($id)
+        ->update($validasi);
+
+        return redirect('fakultas')->with('Data Fakultas berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $fakultas = Fakultas::find($id);
+        // dd($fakultas);
+        $fakultas->delete();
+        return redirect('fakultas')->with('succces', 'Data Fakultas berhasil dihapus.');
     }
 }
