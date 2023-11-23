@@ -6,11 +6,11 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Mahasiswa</h4>
+                    <h4 class="card-title">Fakultas</h4>
                     <p class="card-description">
-                        Daftar Mahasiswa di Universitas MDP
+                        Daftar Fakultas di Universitas MDP
                     </p>
-                    <a href="{{ route('mahasiswa.create') }}"class="btn btn-primary btn-rounded btn-fw">Tambah</a>
+                    <a href="{{ route('fakultas.create') }}"class="btn btn-primary btn-rounded btn-fw">Tambah</a>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -22,9 +22,9 @@
                                     <td>
 
                                         <div class="d-flex justify-content-center">
-                                             <a href="{{ route('fakultas.edit', $item->id) }}">
-                                                    <button class="btn btn-success btn-sm btn-rounded">Edit</button>
-                                                </a>
+                                            <a href="{{ route('fakultas.edit', $item->id) }}">
+                                                <button class="btn btn-success btn-sm btn-rounded">Edit</button>
+                                            </a>
                                             <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
                                                 @csrf
 

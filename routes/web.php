@@ -32,6 +32,22 @@ Route::get('/', function () {
 //     return view('mahasiswa');
 // });
 
+Route::middleware('auth')->group(function() {
+
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('fakultas', FakultasController::class);
 Route::resource('prodi', ProdiController::class);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
