@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('welcome');
+});
+
 // Route::get('/fakultas', function() {
 // return view('fakultas');
 // });
@@ -33,19 +37,16 @@ Route::get('/', function () {
 // });
 
 Route::middleware('auth')->group(function() {
-
-Route::resource('mahasiswa', MahasiswaController::class);
-Route::resource('fakultas', FakultasController::class);
-Route::resource('prodi', ProdiController::class);
+    Route::resource('mahasiswa', MahasiswaController::class);
+    Route::resource('fakultas', FakultasController::class);
+    Route::resource('prodi', ProdiController::class);
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Auth::routes();
