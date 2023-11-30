@@ -54,6 +54,15 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label for="jk">Jenis Kelamin Mahasiswa</label>
+                        <input type="date" class="form-control" name="jk" placeholder="Tanggal Lahir Mahasiswa"
+                            value="{{ $mahasiswa->jk }}">
+                        @error('jk')
+                            <label closs="text-danger">{{ $message }}</label>
+                        @enderror
+                    </div>
+
 
                     <div class="form-group">
                         <label for="foto">Foto Mahasiswa</label>

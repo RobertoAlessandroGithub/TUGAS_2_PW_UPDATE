@@ -30,6 +30,7 @@
                                         <td>{{ $item['nama'] }}</td>
                                         <td>{{ $item['tempat_lahir'] }}</td>
                                         <td>{{ $item['tanggal_lahir'] }}</td>
+                                        <td>{{ $item['jk'] }}</td>
                                         <td><img src ="images/{{ $item['foto'] }}"class="rounded-circle" width="70px" />
                                         </td>
                                         <td>{{ $item['prodi']['nama'] }} </td>
