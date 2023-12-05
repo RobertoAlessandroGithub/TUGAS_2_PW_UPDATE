@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -32,23 +32,24 @@
                     <a class="nav-link" href="{{ url('home') }}">
                         <i class="mdi mdi-view-quilt menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
+                        {{-- <div class="badge badge-info badge-pill">2</div> --}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('fakultas') }}">
-                        <i class="mdi mdi-account-multiple-minus menu-icon"></i>
+                        <i class="mdi mdi-flask menu-icon"></i>
                         <span class="menu-title">Fakultas</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('prodi') }}">
-                        <i class="mdi mdi-home-modern menu-icon"></i>
-                        <span class="menu-title">Prodi</span>
+                        <i class="mdi mdi-incognito menu-icon"></i>
+                        <span class="menu-title">Program Studi</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('mahasiswa') }}">
-                        <i class="mdi mdi-account-circle menu-icon"></i>
+                        <i class="mdi mdi-human-greeting menu-icon"></i>
                         <span class="menu-title">Mahasiswa</span>
                     </a>
                 </li>
@@ -148,12 +149,13 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <div class="navbar-brand-wrapper">
-                        <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg"
-                                alt="logo" /></a>
-                        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg"
-                                alt="logo" /></a>
+                        <a class="navbar-brand brand-logo" href="index.html"><img
+                                src="{{ asset('images/logo.svg') }}" alt="logo" /></a>
+                        <a class="navbar-brand brand-logo-mini" href="index.html"><img
+                                src="{{ asset('images/logo-mini.svg') }}" alt="logo" /></a>
                     </div>
-                    <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, Brandon Haynes</h4>
+                    <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, {{ Auth::user()->name }}
+                    </h4>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item">
                             <h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar 12, 2019 - Apr 10, 2019</h4>
@@ -274,8 +276,8 @@
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 id="profileDropdown">
-                                <img src="images/faces/face5.jpg" alt="profile" />
-                                <span class="nav-profile-name">Eleanor Richardson</span>
+                                <img src="{{ asset('images/faces/face5') }}.jpg" alt="profile" />
+                                <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                                 aria-labelledby="profileDropdown">
@@ -283,10 +285,20 @@
                                     <i class="mdi mdi-settings text-primary"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item">
+                                {{-- <a class="dropdown-item">
                                     <i class="mdi mdi-logout text-primary"></i>
                                     Logout
+                                </a> --}}
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -344,7 +356,6 @@
     <script src="vendors/chart.js/Chart.min.js"></script>
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="js/off-canvas.js"></script>
     <script src="js/hoverable-collapse.js"></script>
     <script src="js/template.js"></script>
@@ -354,6 +365,7 @@
     <!-- Custom js for this page-->
     <script src="js/dashboard.js"></script>
     <!-- End custom js for this page-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script type="text/javascript">

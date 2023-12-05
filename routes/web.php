@@ -3,6 +3,7 @@
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,8 @@ Route::get('/test', function () {
 //     return view('mahasiswa');
 // });
 
-Route::middleware('auth')->group(function() {
+//Admin
+Route::middleware(['auth', 'checkRole:A'])->group(function() {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('fakultas', FakultasController::class);
     Route::resource('prodi', ProdiController::class);
@@ -47,8 +49,12 @@ Route::middleware('auth')->group(function() {
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//User
+Route::middleware(['auth', 'checkRole:U'])->group(function() {
+Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
+});
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['checkRole:A'])->name('home');

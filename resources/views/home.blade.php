@@ -218,7 +218,7 @@
                             text: 'Persentasi Jenis Kelamin'
                         },
                         tooltip: {
-                            valueSuffix: '%'
+                            valueSuffix: ''
                         },
                         subtitle: {
                             text: 'Source:<a href="https://www.mdpi.com/2072-6643/11/3/684/htm" target="_default">MDPI</a>'
@@ -248,7 +248,7 @@
                             }
                         },
                         series: [{
-                            name: 'Persentasi',
+                            name: 'Jumlah',
                             colorByPoint: true,
                             data: [
                                 @foreach ($grafik_jk as $item)
@@ -339,7 +339,7 @@
                             type: 'column'
                         },
                         title: {
-                            text: 'Corn vs wheat estimated production for 2020',
+                            text: 'Jumlah Jenis Kelamin Berdasarkan Program Studi',
                             align: 'left'
                         },
                         subtitle: {
@@ -355,13 +355,13 @@
                             ],
                             crosshair: true,
                             accessibility: {
-                                description: 'Countries'
+                                description: 'Mahasiswa'
                             }
                         },
                         yAxis: {
                             min: 0,
                             title: {
-                                text: '1000 metric tons (MT)'
+                                text: 'Mahasiswa'
                             }
                         },
                         tooltip: {
