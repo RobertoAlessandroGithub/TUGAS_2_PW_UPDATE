@@ -77,6 +77,7 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
+        $this->authorize('update');
         $validasi = $request->validate([
             "npm" => "required",
             "nama" => "required",
@@ -100,6 +101,7 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+    $this->authorize('delete', $mahasiswa);
     $mahasiswa->delete();
     return redirect()->route('mahasiswa.index')->with('success', "BERHASIL DIHAPUS");
     }

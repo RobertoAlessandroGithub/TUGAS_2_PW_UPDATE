@@ -38,7 +38,7 @@ Route::get('/test', function () {
 // });
 
 //Admin
-Route::middleware(['auth', 'checkRole:A'])->group(function() {
+Route::middleware(['auth'])->group(function() {
     Route::resource('mahasiswa', MahasiswaController::class);
     Route::resource('fakultas', FakultasController::class);
     Route::resource('prodi', ProdiController::class);
@@ -50,9 +50,9 @@ Route::middleware(['auth', 'checkRole:A'])->group(function() {
 
 
 //User
-Route::middleware(['auth', 'checkRole:U'])->group(function() {
-Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
-});
+// Route::middleware(['auth', 'checkRole:U'])->group(function() {
+// Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas.index');
+// });
 
 
 Auth::routes();

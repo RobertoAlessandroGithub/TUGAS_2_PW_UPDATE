@@ -10,7 +10,10 @@
                     <p class="card-description">
                         Daftar Fakultas di Universitas MDP
                     </p>
-                    <a href="{{ route('fakultas.create') }}"class="btn btn-primary btn-rounded btn-fw">Tambah</a>
+                    @if (Auth::user()->role == 'A')
+                        <a href="{{ route('fakultas.create') }}"class="btn btn-primary btn-rounded btn-fw">Tambah</a>
+                    @endif
+
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -19,24 +22,28 @@
                                 </tr>
                                 @foreach ($fakultas as $item)
                                     <td>{{ $item['nama'] }}</td>
-                                    <td>
 
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ route('fakultas.edit', $item->id) }}">
-                                                <button class="btn btn-success btn-sm btn-rounded">Edit</button>
-                                            </a>
-                                            <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
-                                                @csrf
+                                    @if (Auth::user()->role == 'A')
+                                        <td>
 
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-danger btn-rounded show_confirm"
-                                                    data-toggle="tooltip" title='Delete'
-                                                    data-nama='{{ $item->nama }}'>Hapus</button>
-                                            </form>
-                                        </div>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('fakultas.edit', $item->id) }}">
+                                                    <button class="btn btn-success btn-sm btn-rounded">Edit</button>
+                                                </a>
+                                                <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
+                                                    @csrf
 
-                                    </td>
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit"
+                                                        class="btn btn-sm btn-danger btn-rounded show_confirm"
+                                                        data-toggle="tooltip" title='Delete'
+                                                        data-nama='{{ $item->nama }}'>Hapus</button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                    @endif
+
 
                     </div>
 
